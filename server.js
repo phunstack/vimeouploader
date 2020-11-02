@@ -3,8 +3,6 @@ var express =   require("express");
 var multer  =   require('multer');
 var app         =   express();
 
-
-
 var storage =   multer.diskStorage({   
 	destination: function (req, file, callback) {
 		callback(null, './uploads');   
@@ -25,7 +23,7 @@ app.post('/api/upload',function(req,res){
 			console.error(err);
 			return res.end("Error uploading file.");
 		}
-		let file = 'z:/src/vimeouploader/uploads/' + req.file.filename;
+		let file = process.env.FOLDER + req.file.filename;
 		console.log(file);
 		var Vimeo = require('vimeo').Vimeo;
 		var client = new Vimeo(process.env.CLIENT_ID, process.env.CLIENT_SECRET, process.env.ACCESS_TOKEN);
