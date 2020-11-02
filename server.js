@@ -10,7 +10,7 @@ var storage =   multer.diskStorage({
 		callback(null, './uploads');   
 	},
 	filename: function (req, file, callback) {
-		callback(null, file.fieldname + '-' + Date.now());   
+		callback(null, file.fieldname + '-' + Date.now() + '.mp4');   
 	} 
 }); 
 
@@ -25,10 +25,12 @@ app.post('/api/upload',function(req,res){
 			console.error(err);
 			return res.end("Error uploading file.");
 		}
+		let file = 'z:/src/vimeouploader/uploads/' + req.file.filename;
+		console.log(file);
 		var Vimeo = require('vimeo').Vimeo;
 		var client = new Vimeo(process.env.CLIENT_ID, process.env.CLIENT_SECRET, process.env.ACCESS_TOKEN);
 		client.upload(
-			req.file,
+			file,
 			function(uri){
 				res.end('Vimeo URI is:', uri)
 			},
