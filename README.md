@@ -1,5 +1,5 @@
-# vimeouploader
-a small server that uploads videos to vimeo
+# Vimeouploader
+This is a small webapp to upload videos to vimeo.
 
 # Installation
 Clone the repository and then install npm modules.
